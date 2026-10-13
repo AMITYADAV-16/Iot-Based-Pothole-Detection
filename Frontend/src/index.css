@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure Leaflet map container stays behind the application UI. */
+/* Leaflet may inject panes with inline z-index; use !important to be robust. */
+#map,
+.leaflet-container,
+.leaflet-pane {
+	z-index: 0 !important;
+}
+
+/* Make sure the app root sits above the map */
+#root {
+	position: relative;
+	z-index: 50;
+}
+
+/* Custom pothole marker styles */
+.pothole-marker-icon {
+	display: block;
+	transform: translate3d(-50%, -100%, 0);
+}
+
+.pothole-marker-pin {
+	width: 24px;
+	height: 24px;
+	border-radius: 50% 50% 50% 50%;
+	position: relative;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.16);
+}
+
+.pothole-marker-pin::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: -14px;
+	width: 10px;
+	height: 10px;
+	background: inherit;
+	transform: translateX(-50%) rotate(45deg);
+	border-radius: 2px;
+	border: 3px solid white;
+	border-top: none;
+	border-left: none;
+}
+
+.pothole-marker-inner {
+	width: 10px;
+	height: 10px;
+	background: white;
+	border-radius: 9999px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
